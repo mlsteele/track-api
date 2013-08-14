@@ -8,7 +8,7 @@ track = window.track
 
 
 # -- event emission --
-track.add_context username: 'Miles'
+track.update_context username: 'Miles'
 
 track.event "Viewed sequential",
   seq_name: 'electrons'

@@ -15,7 +15,7 @@ track.set_context({
     'username': 'Miles'
 })
 
-track.add_context({
+track.update_context({
     'time_since': 800
 })
 

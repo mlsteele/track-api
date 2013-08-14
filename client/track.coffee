@@ -5,7 +5,7 @@ class Track
   set_context: (new_context) ->
     @context = new_context
 
-  add_context: (more_context) ->
+  update_context: (more_context) ->
     @context[k] = v for k, v of more_context
 
   clear_context: ->
@@ -33,4 +33,4 @@ class Track
 
 default_track = new Track
 window.track = default_track
-window.track.add_context url: window.location.href
+window.track.update_context url: window.location.href
