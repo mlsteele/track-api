@@ -88,6 +88,9 @@ class Track(object):
     def clear_context(self):
         self.context = {}
 
+    def add_context(self, more_context):
+        self.context.update(more_context)
+
     def event(self, event_name, event_data):
         evt = Event(event_name, event_data, self.context)
         if evt.name in self.registered_events:

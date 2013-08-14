@@ -7,11 +7,16 @@ with track.register("Viewed sequential") as evt:
     evt.require_data('referrer', choices=['prev', 'next', 'other'])
     evt.require_data('seq_index', validator=lambda x: x > 1)
     evt.require_context('username')
+    evt.require_context('time_since', kind=int)
 
 
 # -- event emission --
 track.set_context({
     'username': 'Miles'
+})
+
+track.add_context({
+    'time_since': 800
 })
 
 track.event("Viewed sequential", {
