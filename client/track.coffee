@@ -26,15 +26,11 @@ class Track
       client_timestamp: new Date().getTime()
       client_validated: no
 
-    $.ajaxWithPrefix
+    window.$.ajaxWithPrefix
       url: "/event"
       data: event: JSON.stringify evt_obj
       async: async
 
 default_track = new Track
-window?.track.add_context url: window.location.href
-
-if exports?
-  exports.track = default_track
-else
-  window.track = default_track
+window.track = default_track
+window.track.add_context url: window.location.href
