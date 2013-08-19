@@ -10,11 +10,11 @@ with track.register("Viewed sequential") as evt:
     evt.require_context('time_since', kind=int)
 
 # -- event emission --
-track.set_context({
+track.push_context({
     'username': 'Miles'
 })
 
-track.update_context({
+track.push_context({
     'time_since': 800
 })
 
@@ -23,3 +23,5 @@ track.event("Viewed sequential", {
     'referrer': 'prev',
     'seq_index': 4,
 })
+
+track.pop_context()

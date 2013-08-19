@@ -1,5 +1,6 @@
 import time
 from pprint import pprint
+from dictstack import DictStack
 
 
 class Event(object):
@@ -120,18 +121,18 @@ class EventSchema(object):
 class Track(object):
     """ Event tracking host. """
     def __init__(self):
-        self.context = {}
+        self.context = DictStack()
         self.registered_events = {}
 
-    def set_context(self, new_context):
-        self.context = new_context
-
     def clear_context(self):
-        self.context = {}
+        self.context = DictStack()
 
-    def update_context(self, more_context):
+    def push_context(self, more_context):
         """ Add additional context or update existing context fields. """
-        self.context.update(more_context)
+        self.context.push(more_context)
+
+    def pop_context(self):
+        self.context.pop()
 
     def event(self, event_name, event_data):
         """
@@ -141,7 +142,7 @@ class Track(object):
         `event_data` is the event payload.
         context is from this `Track` is added to the event.
         """
-        evt = Event(event_name, event_data, self.context)
+        evt = Event(event_name, event_data, self.context.get_dict())
         if evt.name in self.registered_events:
             schema = self.registered_events[evt.name]
             if schema.validate(evt):
