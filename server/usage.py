@@ -9,7 +9,6 @@ with track.register("Viewed sequential") as evt:
     evt.require_context('username')
     evt.require_context('time_since', kind=int)
 
-
 # -- event emission --
 track.set_context({
     'username': 'Miles'

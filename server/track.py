@@ -52,11 +52,11 @@ class EventSchema(object):
 
     def _create_validators(self, validators, kind=None, choices=None, validator=None):
         """ `validators` is a list of validation functions """
-        if kind != None:
+        if kind is not None:
             validators.append(lambda x: isinstance(x, kind))
-        if choices != None:
+        if choices is not None:
             validators.append(lambda x: x in choices)
-        if validator != None:
+        if validator is not None:
             validators.append(validator)
         return validators
 
